@@ -38,10 +38,12 @@ async def repo(_, message):
         reply_markup=InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("Repo", url="https://github.com/grey423/GreyCilik"), 
-                    InlineKeyboardButton("Support", url="https://t.me/CilikSupport")
+                    InlineKeyboardButton(
+                        "Repo", url="https://github.com/grey423/GreyCilik"
+                    ),
+                    InlineKeyboardButton("Support", url="https://t.me/CilikSupport"),
                 ]
             ]
         ),
-        disable_web_page_preview=True
+        disable_web_page_preview=True,
     )

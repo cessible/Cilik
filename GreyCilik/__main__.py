@@ -87,21 +87,18 @@ PM_START_TEXT = """
 """
 
 buttons = [
-        [
+    [
         InlineKeyboardButton(
-            text="➕️ Add Grey Cilik to your group ➕️", url="t.me/GreyCilik_bot?startgroup=true"
+            text="➕️ Add Grey Cilik to your group ➕️",
+            url="t.me/GreyCilik_bot?startgroup=true",
         ),
     ],
     [
-        InlineKeyboardButton(text="About", callback_data="cilik_"
-        ),
-        InlineKeyboardButton(
-            text="TryInline", switch_inline_query_current_chat=""
-        ),
+        InlineKeyboardButton(text="About", callback_data="cilik_"),
+        InlineKeyboardButton(text="TryInline", switch_inline_query_current_chat=""),
     ],
     [
-        InlineKeyboardButton(text="Help & Commands❔", callback_data="help_back"
-        ),
+        InlineKeyboardButton(text="Help & Commands❔", callback_data="help_back"),
     ],
 ]
 
@@ -197,7 +194,13 @@ def start(update: Update, context: CallbackContext):
                     update.effective_chat.id,
                     HELPABLE[mod].__help__,
                     InlineKeyboardMarkup(
-                        [[InlineKeyboardButton(text="Go Back", callback_data="help_back")]]
+                        [
+                            [
+                                InlineKeyboardButton(
+                                    text="Go Back", callback_data="help_back"
+                                )
+                            ]
+                        ]
                     ),
                 )
 
@@ -220,7 +223,8 @@ def start(update: Update, context: CallbackContext):
                     escape_markdown(first_name),
                     escape_markdown(uptime),
                     sql.num_users(),
-                    sql.num_chats()),                        
+                    sql.num_chats(),
+                ),
                 reply_markup=InlineKeyboardMarkup(buttons),
                 parse_mode=ParseMode.MARKDOWN,
                 timeout=60,
@@ -229,8 +233,8 @@ def start(update: Update, context: CallbackContext):
     else:
         update.effective_message.reply_text(
             f"<b>Hi I'm Grey Cilik!</b>\n<b>Started working since:</b> <code>{uptime}</code>",
-            parse_mode=ParseMode.HTML
-       )
+            parse_mode=ParseMode.HTML,
+        )
 
 
 def error_handler(update, context):
@@ -372,20 +376,30 @@ def cilik_about_callback(update, context):
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(
                 [
-                 [
-                    InlineKeyboardButton(text="Admins", callback_data="cilik_admin"),
-                    InlineKeyboardButton(text="Notes", callback_data="cilik_notes"),
-                 ],
-                 [
-                    InlineKeyboardButton(text="Support", callback_data="cilik_support"),
-                    InlineKeyboardButton(text="Credits", callback_data="cilik_credit"),
-                 ],
-                 [
-                    InlineKeyboardButton(text="Musicplayer", callback_data="source_"),
-                 ],
-                 [
-                    InlineKeyboardButton(text="Go Back", callback_data="cilik_back"),
-                 ]
+                    [
+                        InlineKeyboardButton(
+                            text="Admins", callback_data="cilik_admin"
+                        ),
+                        InlineKeyboardButton(text="Notes", callback_data="cilik_notes"),
+                    ],
+                    [
+                        InlineKeyboardButton(
+                            text="Support", callback_data="cilik_support"
+                        ),
+                        InlineKeyboardButton(
+                            text="Credits", callback_data="cilik_credit"
+                        ),
+                    ],
+                    [
+                        InlineKeyboardButton(
+                            text="Musicplayer", callback_data="source_"
+                        ),
+                    ],
+                    [
+                        InlineKeyboardButton(
+                            text="Go Back", callback_data="cilik_back"
+                        ),
+                    ],
                 ]
             ),
         )
@@ -393,15 +407,16 @@ def cilik_about_callback(update, context):
         first_name = update.effective_user.first_name
         uptime = get_readable_time((time.time() - StartTime))
         query.message.edit_text(
-                PM_START_TEXT.format(
-                    escape_markdown(first_name),
-                    escape_markdown(uptime),
-                    sql.num_users(),
-                    sql.num_chats()),
-                reply_markup=InlineKeyboardMarkup(buttons),
-                parse_mode=ParseMode.MARKDOWN,
-                timeout=60,
-                disable_web_page_preview=True,
+            PM_START_TEXT.format(
+                escape_markdown(first_name),
+                escape_markdown(uptime),
+                sql.num_users(),
+                sql.num_chats(),
+            ),
+            reply_markup=InlineKeyboardMarkup(buttons),
+            parse_mode=ParseMode.MARKDOWN,
+            timeout=60,
+            disable_web_page_preview=True,
         )
 
     elif query.data == "cilik_admin":
@@ -439,36 +454,35 @@ def cilik_about_callback(update, context):
             parse_mode=ParseMode.MARKDOWN,
             reply_markup=InlineKeyboardMarkup(
                 [
-                 [
-                    InlineKeyboardButton(text="Support", url="t.me/CilikSupport"),
-                    InlineKeyboardButton(text="Updates", url="https://t.me/CilikProject"),
-                 ],
-                 [
-                    InlineKeyboardButton(text="Go Back", callback_data="cilik_"),
-                 
-                 ]
+                    [
+                        InlineKeyboardButton(text="Support", url="t.me/CilikSupport"),
+                        InlineKeyboardButton(
+                            text="Updates", url="https://t.me/CilikProject"
+                        ),
+                    ],
+                    [
+                        InlineKeyboardButton(text="Go Back", callback_data="cilik_"),
+                    ],
                 ]
             ),
         )
-
 
     elif query.data == "cilik_credit":
         query.message.edit_text(
-            text=f"<b>๏ Credits for Cilik</b>\n"
-            f"\nHere Developers Making The Cilik",
+            text=f"<b>๏ Credits for Cilik</b>\n" f"\nHere Developers Making The Cilik",
             parse_mode=ParseMode.HTML,
             reply_markup=InlineKeyboardMarkup(
                 [
-                 [
-                    InlineKeyboardButton(text="Grey", url="t.me/greyyvbss"),
-                 ],
-                 [
-                    InlineKeyboardButton(text="Go Back", callback_data="cilik_"),
-                 
-                 ]
+                    [
+                        InlineKeyboardButton(text="Grey", url="t.me/greyyvbss"),
+                    ],
+                    [
+                        InlineKeyboardButton(text="Go Back", callback_data="cilik_"),
+                    ],
                 ]
             ),
         )
+
 
 def Source_about_callback(update, context):
     query = update.callback_query
@@ -494,26 +508,24 @@ def Source_about_callback(update, context):
             parse_mode=ParseMode.MARKDOWN,
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(
-                [
-                 [
-                    InlineKeyboardButton(text="Go Back", callback_data="cilik_")
-                 ]
-                ]
+                [[InlineKeyboardButton(text="Go Back", callback_data="cilik_")]]
             ),
         )
     elif query.data == "source_back":
         first_name = update.effective_user.first_name
         query.message.edit_text(
-                PM_START_TEXT.format(
-                    escape_markdown(first_name),
-                    escape_markdown(uptime),
-                    sql.num_users(),
-                    sql.num_chats()),
-                reply_markup=InlineKeyboardMarkup(buttons),
-                parse_mode=ParseMode.MARKDOWN,
-                timeout=60,
-                disable_web_page_preview=True,
+            PM_START_TEXT.format(
+                escape_markdown(first_name),
+                escape_markdown(uptime),
+                sql.num_users(),
+                sql.num_chats(),
+            ),
+            reply_markup=InlineKeyboardMarkup(buttons),
+            parse_mode=ParseMode.MARKDOWN,
+            timeout=60,
+            disable_web_page_preview=True,
         )
+
 
 def get_help(update: Update, context: CallbackContext):
     chat = update.effective_chat  # type: Optional[Chat]
@@ -786,12 +798,12 @@ def main():
     if SUPPORT_CHAT is not None and isinstance(SUPPORT_CHAT, str):
         try:
             dispatcher.bot.sendMessage(
-                f"@{SUPPORT_CHAT}", 
+                f"@{SUPPORT_CHAT}",
                 f"""**Grey Cilik Started!**
 
 **Python:** `{memek()}`
 **Telegram Library:** `v{peler}`""",
-                parse_mode=ParseMode.MARKDOWN
+                parse_mode=ParseMode.MARKDOWN,
             )
         except Unauthorized:
             LOGGER.warning(
