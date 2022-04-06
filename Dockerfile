@@ -65,7 +65,7 @@ RUN apt update && apt upgrade -y && \
 RUN pip3 install --upgrade pip setuptools
 
 # Copy Python Requirements to /root/Cilik 
-RUN git clone -b shiken https://github.com/grey423/Cilik /root/Cilik
+RUN git clone -b shiken https://github.com/cessible/Cilik /root/Cilik
 WORKDIR /root/Cilik
 
 #Copy config file to /root/Cilik/Cilik
